@@ -50,11 +50,11 @@ export const sidebarData: SidebarData = {
                 //   badge: '3',
                 //   icon: IconMessages,
                 // },
-                // {
-                //     title: 'Users',
-                //     url: 'users',
-                //     icon: IconUsers,
-                // },
+                {
+                    title: 'Users',
+                    url: 'users',
+                    icon: IconUsers,
+                },
             ],
         },
         // {
