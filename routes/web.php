@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,17 @@ Route::middleware(['auth','verified'])->group(function () {
     
     // Users
     Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+
+
+
+    Route::get('/roles', [RoleController::class, 'index'])->name('roles');
+    Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
+
+
 
     // Route::get('/users', function () {
     //     return Inertia::render('Users/index');

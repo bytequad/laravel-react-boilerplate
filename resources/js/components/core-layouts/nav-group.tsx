@@ -201,12 +201,14 @@ const SidebarMenuCollapsedDropdown = ({
 };
 
 function checkIsActive(href: string, item: NavItem, mainNav = false) {
+    const hrefBase = href.split('?')[0].split('/')[1]; // Extract base path of href
+    const itemBase = item.url?.split('/')[1]; // Extract base path of item.url
+
     return (
-        href === item.url || // /endpint?search=param
-        href.split('?')[0] === item.url || // endpoint
-        !!item?.items?.filter((i) => i.url === href).length || // if child nav is active
-        (mainNav &&
-            href.split('/')[1] !== '' &&
-            href.split('/')[1] === item?.url?.split('/')[1])
+        href === item.url || // Exact match with query params
+        href.split('?')[0] === item.url || // Exact match without query params
+        !!item?.items?.filter((i) => i.url === href).length || // Check if any child nav is active
+        (mainNav && hrefBase !== '' && hrefBase === itemBase) || // Main navigation base match
+        (item.url && href.startsWith(item.url)) // Matches nested paths like /roles/create under /roles
     );
 }

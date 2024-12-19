@@ -39,7 +39,7 @@ interface DataTableProps {
     }[];
 }
 
-export function UsersTable({
+export function RolesTable({
     columns,
     data,
     links,
@@ -80,7 +80,7 @@ export function UsersTable({
             const sortingData = sortingArr[0];
 
             router.get(
-                route('users', {
+                route('roles', {
                     ...query,
                     sort_by: sortingData.id,
                     sort_direction: sortingData.desc ? 'desc' : 'asc',

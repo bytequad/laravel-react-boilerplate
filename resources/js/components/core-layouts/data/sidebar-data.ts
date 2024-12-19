@@ -1,4 +1,4 @@
-import { IconLayoutDashboard, IconUsers } from '@tabler/icons-react';
+import { IconLayoutDashboard, IconUsers, IconUserShield } from '@tabler/icons-react';
 import { AudioWaveform, Command, GalleryVerticalEnd } from 'lucide-react';
 import { SidebarData } from '../types';
 
@@ -54,6 +54,11 @@ export const sidebarData: SidebarData = {
                     title: 'Users',
                     url: 'users',
                     icon: IconUsers,
+                },
+                {
+                    title: 'Roles',
+                    url: 'roles',
+                    icon: IconUserShield,
                 },
             ],
         },

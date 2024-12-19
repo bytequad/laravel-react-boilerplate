@@ -12,9 +12,9 @@ interface Props {
     currentRow: User;
 }
 
-export function UsersDeleteDialog({ open, onOpenChange, currentRow }: Props) {
+export function RolesDeleteDialog({ open, onOpenChange, currentRow }: Props) {
     const handleDelete = () => {
-        router.visit(route('users.destroy', currentRow.id), {
+        router.visit(route('roles.destroy', currentRow.id), {
             method: 'delete',
             onFinish() {
                 toast({

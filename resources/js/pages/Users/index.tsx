@@ -5,10 +5,11 @@ type Props = {
     users: UsersResponse;
 };
 
-export default function Users({ users }: Props) {
+export default function Users(props: Props) {
+    console.log("🚀 ~ Users ~ props:", props)
     return (
         <AuthenticatedLayout>
-            <UsersFeature users={users} />
+            <UsersFeature {...props} />
         </AuthenticatedLayout>
     );
 }

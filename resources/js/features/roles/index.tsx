@@ -5,20 +5,21 @@ import { ProfileDropdown } from '@/components/ui/profile-dropdown';
 import { Search } from '@/components/ui/search';
 import { ThemeSwitch } from '@/components/ui/theme-switch';
 import useDialogState from '@/hooks/use-dialog-state';
-import { IconMailPlus, IconUserPlus } from '@tabler/icons-react';
+import { IconUserShield } from '@tabler/icons-react';
 import { useState } from 'react';
+import { RolesDeleteDialog } from './components/roles-delete-dialog';
+import { RolesTable } from './components/roles-table';
 import { UsersActionDialog } from './components/users-action-dialog';
 import { columns } from './components/users-columns';
-import { UsersDeleteDialog } from './components/users-delete-dialog';
 import { UsersInviteDialog } from './components/users-invite-dialog';
-import { UsersTable } from './components/users-table';
 import UsersContextProvider, {
     type UsersDialogType,
 } from './context/users-context';
 import { User } from './data/schema';
+import { Link } from '@inertiajs/react';
 
-export default function UsersFeature({
-    users,
+export default function RolesFeature({
+    roles,
     search,
     sort_by,
     sort_direction,
@@ -28,7 +29,7 @@ export default function UsersFeature({
     const atr = { search, sort_by, sort_direction };
     // Parse user list
     // const userList = userListSchema.parse(users);
-    const userList = users.data;
+    const userList = roles.data;
 
     return (
         <UsersContextProvider
@@ -38,33 +39,26 @@ export default function UsersFeature({
                 <div className="mb-2 flex flex-wrap items-center justify-between space-y-2">
                     <div>
                         <h2 className="text-2xl font-bold tracking-tight">
-                            User List
+                            Roles List
                         </h2>
                         <p className="text-muted-foreground">
-                            Manage your users and their roles here.
+                            Manage roles and their permisisons here.
                         </p>
                     </div>
                     <div className="flex gap-2">
-                        <Button
-                            variant="outline"
-                            className="space-x-1"
-                            onClick={() => setOpen('invite')}
-                        >
-                            <span>Invite User</span> <IconMailPlus size={18} />
-                        </Button>
-                        <Button
-                            className="space-x-1"
-                            onClick={() => setOpen('add')}
-                        >
-                            <span>Add User</span> <IconUserPlus size={18} />
+                        <Button asChild className="space-x-1">
+                            <Link href={route('roles.create')}>
+                                <span>Add Role</span>{' '}
+                                <IconUserShield size={18} />
+                            </Link>
                         </Button>
                     </div>
                 </div>
                 <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-                    <UsersTable
+                    <RolesTable
                         data={userList}
                         columns={columns}
-                        links={users.links}
+                        links={roles.links}
                         {...atr}
                     />
                 </div>
@@ -96,8 +90,8 @@ export default function UsersFeature({
                         currentRow={currentRow}
                     />
 
-                    <UsersDeleteDialog
-                        key={`user-delete-${currentRow.id}`}
+                    <RolesDeleteDialog
+                        key={`role-delete-${currentRow.id}`}
                         open={open === 'delete'}
                         onOpenChange={() => {
                             setOpen('delete');

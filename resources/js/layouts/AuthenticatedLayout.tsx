@@ -1,6 +1,10 @@
 import { AppSidebar } from '@/components/core-layouts/app-sidebar';
+import { Header } from '@/components/core-layouts/header';
+import { ProfileDropdown } from '@/components/ui/profile-dropdown';
+import { Search } from '@/components/ui/search';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import SkipToMain from '@/components/ui/skip-to-main';
+import { ThemeSwitch } from '@/components/ui/theme-switch';
 import { SearchProvider } from '@/context/search-context';
 import { cn } from '@/lib/utils';
 import { usePage } from '@inertiajs/react';
@@ -31,6 +35,15 @@ export default function Authenticated({
                         'flex h-svh flex-col',
                     )}
                 >
+                    {' '}
+                    {/* ===== Top Heading ===== */}
+                    <Header sticky>
+                        <Search />
+                        <div className="ml-auto flex items-center space-x-4">
+                            <ThemeSwitch />
+                            <ProfileDropdown />
+                        </div>
+                    </Header>
                     {children}
                 </div>
             </SidebarProvider>

@@ -10,7 +10,6 @@ import { Input } from './ui/input';
 export default forwardRef(function TextInput(
     {
         type = '',
-        className = '',
         isFocused = false,
         ...props
     }: InputHTMLAttributes<HTMLInputElement> & { isFocused?: boolean },
