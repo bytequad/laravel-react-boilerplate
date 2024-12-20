@@ -4,7 +4,9 @@
     "scripts": {
         "build": "tsc && vite build",
         "dev": "vite",
-        "lint": "eslint resources/js --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --fix"
+        "lint": "eslint resources/js --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --fix",
+        "start:server": "php artisan serve",
+        "migrate": "php artisan migrate"
     },
     "devDependencies": {
         "@headlessui/react": "^2.0.0",
