@@ -18,6 +18,7 @@ import { useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { z } from 'zod';
 import { User } from '../data/schema';
+import { WEB_ROUTES } from '@/config/web.routes';
 
 const formSchema = z
     .object({
@@ -131,7 +132,7 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
         if (isEdit) {
-            put(route('users.update', currentRow.id), {
+            put(route(WEB_ROUTES.users_update, currentRow.id), {
                 onFinish: () => {
                     toast({
                         title: 'User updated!',
@@ -146,7 +147,7 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
                 },
             });
         } else {
-            post(route('users.store'), {
+            post(route(WEB_ROUTES.users_store), {
                 onFinish: () => {
                     reset('password', 'name', 'email', 'password_confirmation');
                     toast({
@@ -300,7 +301,13 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
                     </form>
                 </ScrollArea>
                 <DialogFooter>
-                    <Button type="button" variant={'outline'} onClick={()=> onOpenChange(false)}>Cancel</Button>
+                    <Button
+                        type="button"
+                        variant={'outline'}
+                        onClick={() => onOpenChange(false)}
+                    >
+                        Cancel
+                    </Button>
                     <Button type="submit" form="user-form">
                         Save changes
                     </Button>

@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from '@inertiajs/react';
 import { IconArrowNarrowLeft } from '@tabler/icons-react';
 import CreateRoleForm from './components/create-role-form';
+import { WEB_ROUTES } from '@/config/web.routes';
 
 function Create({ permissions }) {
     return (
@@ -18,14 +19,14 @@ function Create({ permissions }) {
                 </div>
                 <div className="flex gap-2">
                     <Button asChild className="space-x-1" variant={'outline'}>
-                        <Link href={route('roles')}>
+                        <Link href={route(WEB_ROUTES.roles)}>
                             <span>Back</span> <IconArrowNarrowLeft size={18} />
                         </Link>
                     </Button>
                 </div>
             </div>
             <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-            <CreateRoleForm />
+                <CreateRoleForm />
             </div>
         </Main>
     );

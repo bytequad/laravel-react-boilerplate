@@ -1,6 +1,7 @@
 import { IconLayoutDashboard, IconUsers, IconUserShield } from '@tabler/icons-react';
 import { AudioWaveform, Command, GalleryVerticalEnd } from 'lucide-react';
 import { SidebarData } from '../types';
+import { WEB_ROUTES } from '@/config/web.routes';
 
 export const sidebarData: SidebarData = {
     user: {
@@ -31,7 +32,7 @@ export const sidebarData: SidebarData = {
             items: [
                 {
                     title: 'Dashboard',
-                    url: 'dashboard',
+                    url: WEB_ROUTES.dashboard,
                     icon: IconLayoutDashboard,
                 },
                 // {
@@ -52,12 +53,12 @@ export const sidebarData: SidebarData = {
                 // },
                 {
                     title: 'Users',
-                    url: 'users',
+                    url: WEB_ROUTES.users,
                     icon: IconUsers,
                 },
                 {
                     title: 'Roles',
-                    url: 'roles',
+                    url: WEB_ROUTES.roles,
                     icon: IconUserShield,
                 },
             ],

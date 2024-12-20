@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -13,31 +13,30 @@ class RoleController extends Controller
      * Display a listing of the resource.
      */
 
-        public function index(Request $request)
-        {
+    public function index(Request $request)
+    {
 
-            $search = $request->input('search', '');  // Default is empty string
-            $sortBy = $request->input('sort_by', 'display_name');  // Default sort by 'name'
-            $sortDirection = $request->input('sort_direction', 'asc');  // Default sort direction is 'asc'
-        
-            // Build the query for filtering and sorting
-            $roles = Role::query()
-                ->when($search, function ($query, $search) {
-                    return $query->where('display_name', 'like', "%$search%")
-                                ->orWhere('description', 'like', "%$search%");
-                })
-                ->orderBy($sortBy, $sortDirection)
-                ->paginate(10);
-        
-            
-            return Inertia::render('Roles/index', [
-                'roles' => $roles,
-                'search' => $search,
-                'sort_by' => $sortBy,
-                'sort_direction' => $sortDirection,
-            ]);
+        $search = $request->input('search', '');  // Default is empty string
+        $sortBy = $request->input('sort_by', 'display_name');  // Default sort by 'name'
+        $sortDirection = $request->input('sort_direction', 'asc');  // Default sort direction is 'asc'
 
-        }
+        // Build the query for filtering and sorting
+        $roles = Role::query()
+            ->when($search, function ($query, $search) {
+                return $query->where('display_name', 'like', "%$search%")
+                    ->orWhere('description', 'like', "%$search%");
+            })
+            ->orderBy($sortBy, $sortDirection)
+            ->paginate(10);
+
+
+        return Inertia::render('Admin/Roles/index', [
+            'roles' => $roles,
+            'search' => $search,
+            'sort_by' => $sortBy,
+            'sort_direction' => $sortDirection,
+        ]);
+    }
 
 
     /**
@@ -47,7 +46,7 @@ class RoleController extends Controller
     {
         // Get all permissions
         $permissions = Permission::all();
-    
+
         // Return the Inertia view with the permissions data
         return inertia('Roles/create', [
             'permissions' => $permissions,

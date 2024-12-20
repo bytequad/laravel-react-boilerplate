@@ -10,6 +10,7 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { WEB_ROUTES } from '@/config/web.routes';
 import { Link } from '@inertiajs/react';
 
 export function ProfileDropdown() {
@@ -54,7 +55,7 @@ export function ProfileDropdown() {
                     <DropdownMenuItem>New Team</DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <Link href={route('logout')} method="post">
+                <Link href={route(WEB_ROUTES.logout)} method="post">
                     <DropdownMenuItem>
                         Log out
                         <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>

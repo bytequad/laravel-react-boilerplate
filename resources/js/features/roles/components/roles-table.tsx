@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { User } from '../data/schema';
 import { DataTablePagination } from './data-table-pagination';
 import { DataTableToolbar } from './data-table-toolbar';
+import { WEB_ROUTES } from '@/config/web.routes';
 
 declare module '@tanstack/react-table' {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -80,7 +81,7 @@ export function RolesTable({
             const sortingData = sortingArr[0];
 
             router.get(
-                route('roles', {
+                route(WEB_ROUTES.roles, {
                     ...query,
                     sort_by: sortingData.id,
                     sort_direction: sortingData.desc ? 'desc' : 'asc',

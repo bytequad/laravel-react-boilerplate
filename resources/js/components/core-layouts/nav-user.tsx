@@ -14,6 +14,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from '@/components/ui/sidebar';
+import { WEB_ROUTES } from '@/config/web.routes';
 import { Link } from '@inertiajs/react';
 import {
     BadgeCheck,
@@ -114,7 +115,7 @@ export function NavUser({
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <Link href={route('logout')} method="post">
+                        <Link href={route(WEB_ROUTES.logout)} method="post">
                             <DropdownMenuItem>
                                 <LogOut />
                                 Log out

@@ -5,6 +5,7 @@ import { toast } from '@/hooks/use-toast';
 import { router } from '@inertiajs/react';
 import { IconAlertTriangle } from '@tabler/icons-react';
 import { User } from '../data/schema';
+import { WEB_ROUTES } from '@/config/web.routes';
 
 interface Props {
     open: boolean;
@@ -14,7 +15,7 @@ interface Props {
 
 export function UsersDeleteDialog({ open, onOpenChange, currentRow }: Props) {
     const handleDelete = () => {
-        router.visit(route('users.destroy', currentRow.id), {
+        router.visit(route(WEB_ROUTES.users_destroy, currentRow.id), {
             method: 'delete',
             onFinish() {
                 toast({

@@ -17,6 +17,7 @@ import UsersContextProvider, {
 } from './context/users-context';
 import { User } from './data/schema';
 import { Link } from '@inertiajs/react';
+import { WEB_ROUTES } from '@/config/web.routes';
 
 export default function RolesFeature({
     roles,
@@ -47,7 +48,7 @@ export default function RolesFeature({
                     </div>
                     <div className="flex gap-2">
                         <Button asChild className="space-x-1">
-                            <Link href={route('roles.create')}>
+                            <Link href={route(WEB_ROUTES.roles_create)}>
                                 <span>Add Role</span>{' '}
                                 <IconUserShield size={18} />
                             </Link>
