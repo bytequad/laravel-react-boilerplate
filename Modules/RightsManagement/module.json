@@ -1,0 +1,11 @@
+{
+    "name": "RightsManagement",
+    "alias": "rightsmanagement",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\RightsManagement\\Providers\\RightsManagementServiceProvider"
+    ],
+    "files": []
+}
