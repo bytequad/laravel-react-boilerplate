@@ -12,7 +12,7 @@ class Admin extends Authenticatable
     use Notifiable, HasRoles;
 
     protected $guard_name = 'admin'; // Use the 'admin' guard for roles and permissions.
-
+    protected $table = 'admins';
     protected $fillable = [
         'name',
         'email',

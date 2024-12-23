@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -69,7 +70,7 @@ class AdminRoleAndPermissionSeeder extends Seeder
         $adminRole->syncPermissions($allPermissions);
 
         // Assign the Admin role to the user with ID 1
-        $adminUser = User::find(1);
+        $adminUser = Admin::find(1);
 
         if ($adminUser) {
             $adminUser->assignRole($adminRole);

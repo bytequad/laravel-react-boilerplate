@@ -17,11 +17,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $isLoginRoute = $request->is('admin/login');
-        $isRegisterRoute = $request->is('admin/register');
-        Log::info("Calling code");
-
-        if (!Auth::guard('admin')->check() && !$isLoginRoute && !$isRegisterRoute) {
+       
+        Log::info("herere");
+        if (!Auth::guard('admin')->check()) {
             return redirect('/admin/login');
         }
 
