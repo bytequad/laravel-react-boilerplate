@@ -1,23 +1,17 @@
-import { Header } from '@/components/core-layouts/header';
 import { Main } from '@/components/core-layouts/main';
 import { Button } from '@/components/ui/button';
-import { ProfileDropdown } from '@/components/ui/profile-dropdown';
-import { Search } from '@/components/ui/search';
-import { ThemeSwitch } from '@/components/ui/theme-switch';
+import { WEB_ROUTES } from '@/config/web.routes';
 import useDialogState from '@/hooks/use-dialog-state';
+import { Link } from '@inertiajs/react';
 import { IconUserShield } from '@tabler/icons-react';
 import { useState } from 'react';
+import { columns } from './components/roles-columns';
 import { RolesDeleteDialog } from './components/roles-delete-dialog';
 import { RolesTable } from './components/roles-table';
-import { UsersActionDialog } from './components/users-action-dialog';
-import { columns } from './components/users-columns';
-import { UsersInviteDialog } from './components/users-invite-dialog';
 import UsersContextProvider, {
     type UsersDialogType,
 } from './context/users-context';
 import { User } from './data/schema';
-import { Link } from '@inertiajs/react';
-import { WEB_ROUTES } from '@/config/web.routes';
 
 export default function RolesFeature({
     roles,
@@ -65,32 +59,8 @@ export default function RolesFeature({
                 </div>
             </Main>
 
-            <UsersActionDialog
-                key="user-add"
-                open={open === 'add'}
-                onOpenChange={() => setOpen('add')}
-            />
-
-            <UsersInviteDialog
-                key="user-invite"
-                open={open === 'invite'}
-                onOpenChange={() => setOpen('invite')}
-            />
-
             {currentRow && (
                 <>
-                    <UsersActionDialog
-                        key={`user-edit-${currentRow.id}`}
-                        open={open === 'edit'}
-                        onOpenChange={() => {
-                            setOpen('edit');
-                            setTimeout(() => {
-                                setCurrentRow(null);
-                            }, 500);
-                        }}
-                        currentRow={currentRow}
-                    />
-
                     <RolesDeleteDialog
                         key={`role-delete-${currentRow.id}`}
                         open={open === 'delete'}

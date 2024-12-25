@@ -1,4 +1,4 @@
-import Create from '@/features/roles/create';
+import Edit from '@/features/roles/edit';
 import { PermissionsGrouped } from '@/features/roles/roles.type';
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
@@ -9,10 +9,10 @@ function index(props: Props) {
     return (
         <>
             <Head>
-                <title>Create Role</title>
+                <title>Edit Role</title>
             </Head>
             <AuthenticatedLayout>
-                <Create {...props} />
+                <Edit {...props} />
             </AuthenticatedLayout>
         </>
     );

@@ -7,7 +7,7 @@ import CreateRoleForm from './components/create-role-form';
 import { PermissionsProvider } from './context/permissions-context';
 import { PermissionsGrouped } from './roles.type';
 
-function Create({ permissions }: { permissions: PermissionsGrouped }) {
+function Edit({ permissions,role }: { permissions: PermissionsGrouped }) {
     return (
         <PermissionsProvider permissions={permissions}>
             <Main>
@@ -34,11 +34,11 @@ function Create({ permissions }: { permissions: PermissionsGrouped }) {
                     </div>
                 </div>
                 <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-                    <CreateRoleForm />
+                    <CreateRoleForm initialData={role} />
                 </div>
             </Main>
         </PermissionsProvider>
     );
 }
 
-export default Create;
+export default Edit;

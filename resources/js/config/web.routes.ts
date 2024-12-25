@@ -16,5 +16,6 @@ export const WEB_ROUTES = {
     users_destroy: 'admin.users.destroy',
     roles: 'admin.roles',
     roles_create: 'admin.roles.create',
+    roles_edit: 'admin.roles.edit',
     roles_destroy: 'admin.roles.destroy',
 };

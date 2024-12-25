@@ -29,3 +29,11 @@ export type RolesResponse = {
     to: number;
     total: number;
 };
+
+export interface Permission {
+    id: number;
+    name: string;
+    module_name: string;
+}
+
+export type PermissionsGrouped = Record<string, Permission[]>;

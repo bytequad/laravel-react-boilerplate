@@ -83,7 +83,13 @@ Route::middleware(['auth.admin'])->prefix('admin')->name('admin.')->group(
         Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
         Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
 
+        //Roles 
         Route::get('/roles', [RoleController::class, 'index'])->name('roles');
+        Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
         Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
+        Route::get('/roles/edit/{id}', [RoleController::class, 'edit'])->name('roles.edit');
+        Route::put('/roles/{id}', [RoleController::class, 'update'])->name('roles.update');
+        Route::delete('/roles/{id}', [RoleController::class, 'destroy'])->name('roles.destroy');
+
     }
 );

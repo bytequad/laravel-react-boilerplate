@@ -19,6 +19,12 @@ class AdminRoleAndPermissionSeeder extends Seeder
     {
 
         // Ensure the 'Admin' role exists or create it
+        DB::table('admins')->truncate();
+        Admin::create([
+            'name' => 'Super Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('123456'), // Always hash passwords!
+        ]);
         DB::table('roles')->truncate();
         DB::table('permissions')->truncate();
 
@@ -58,7 +64,7 @@ class AdminRoleAndPermissionSeeder extends Seeder
         ];
         foreach ($permissions as $permission) {
             Permission::create(
-                ['name' => $permission['name'], 'guard_name' => $permission['guard_name']],
+                
                 $permission
             );
         }
