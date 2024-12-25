@@ -1,15 +1,15 @@
-import UsersFeature from '@/features/users';
-import { UsersResponse } from '@/features/users/users.type';
+import AdminsFeature from '@/features/admins';
+import { AdminsResponse } from '@/features/admins/admins.type';
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout';
 type Props = {
-    users: UsersResponse;
+    admins: AdminsResponse;
 };
 
 export default function Users(props: Props) {
-    console.log("🚀 ~ Users ~ props:", props)
+    console.log('🚀 ~ Users ~ props:', props);
     return (
         <AuthenticatedLayout>
-            <UsersFeature {...props} />
+            <AdminsFeature {...props} />
         </AuthenticatedLayout>
     );
 }

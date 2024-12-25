@@ -13,12 +13,12 @@ import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
 import TextInput from '@/components/TextInput';
 import { PasswordInput } from '@/components/ui/password-input';
+import { WEB_ROUTES } from '@/config/web.routes';
 import { toast } from '@/hooks/use-toast';
 import { useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { z } from 'zod';
 import { User } from '../data/schema';
-import { WEB_ROUTES } from '@/config/web.routes';
 
 const formSchema = z
     .object({

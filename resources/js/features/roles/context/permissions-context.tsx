@@ -1,7 +1,6 @@
 import React, { createContext, ReactNode, useContext } from 'react';
 import { PermissionsGrouped } from '../roles.type';
 
-
 // Create the context
 const PermissionsContext = createContext<PermissionsGrouped | undefined>(
     undefined,

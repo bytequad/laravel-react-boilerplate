@@ -14,6 +14,14 @@ export const WEB_ROUTES = {
     users_update: 'admin.users.update',
     users_store: 'admin.users.store',
     users_destroy: 'admin.users.destroy',
+
+    //admins routes
+    admins: 'admin.admins',
+    admins_update: 'admin.admins.update',
+    admins_store: 'admin.admins.store',
+    admins_destroy: 'admin.admins.destroy',
+
+    //roles routes
     roles: 'admin.roles',
     roles_create: 'admin.roles.create',
     roles_edit: 'admin.roles.edit',

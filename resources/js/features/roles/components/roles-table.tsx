@@ -1,4 +1,5 @@
 import DataTable from '@/components/ui/data-table';
+import { WEB_ROUTES } from '@/config/web.routes';
 import { router, usePage } from '@inertiajs/react';
 import {
     ColumnDef,
@@ -18,7 +19,6 @@ import { useState } from 'react';
 import { User } from '../data/schema';
 import { DataTablePagination } from './data-table-pagination';
 import { DataTableToolbar } from './data-table-toolbar';
-import { WEB_ROUTES } from '@/config/web.routes';
 
 declare module '@tanstack/react-table' {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

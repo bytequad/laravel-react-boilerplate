@@ -23,7 +23,6 @@ export function appendQueryParams(
 
     const existingParams = new URLSearchParams(queryString || '');
 
-
     // Add new params or overwrite existing ones
     Object.entries(params).forEach(([key, value]) => {
         if (value !== undefined && value !== null) {
@@ -33,7 +32,7 @@ export function appendQueryParams(
             existingParams.set(key, value.toString());
         }
     });
- 
+
     // Rebuild the URL
     return `${baseUrl}?${existingParams.toString()}`;
 }

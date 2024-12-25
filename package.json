@@ -6,6 +6,7 @@
         "dev": "vite",
         "lint": "eslint resources/js --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --fix",
         "start:server": "php artisan serve",
+         "format": "prettier --write 'resources/js/**/*.{js,jsx,ts,tsx}'",
         "migrate": "php artisan migrate"
     },
     "devDependencies": {

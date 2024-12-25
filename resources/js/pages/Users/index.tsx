@@ -6,7 +6,7 @@ type Props = {
 };
 
 export default function Users(props: Props) {
-    console.log("🚀 ~ Users ~ props:", props)
+    console.log('🚀 ~ Users ~ props:', props);
     return (
         <AuthenticatedLayout>
             <UsersFeature {...props} />

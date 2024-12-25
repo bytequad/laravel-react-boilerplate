@@ -1,11 +1,11 @@
 'use client';
 
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
+import { WEB_ROUTES } from '@/config/web.routes';
 import { toast } from '@/hooks/use-toast';
 import { router } from '@inertiajs/react';
 import { IconAlertTriangle } from '@tabler/icons-react';
 import { User } from '../data/schema';
-import { WEB_ROUTES } from '@/config/web.routes';
 
 interface Props {
     open: boolean;

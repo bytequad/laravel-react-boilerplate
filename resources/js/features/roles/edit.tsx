@@ -7,7 +7,7 @@ import CreateRoleForm from './components/create-role-form';
 import { PermissionsProvider } from './context/permissions-context';
 import { PermissionsGrouped } from './roles.type';
 
-function Edit({ permissions,role }: { permissions: PermissionsGrouped }) {
+function Edit({ permissions, role }: { permissions: PermissionsGrouped }) {
     return (
         <PermissionsProvider permissions={permissions}>
             <Main>

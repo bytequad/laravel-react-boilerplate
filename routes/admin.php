@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
@@ -82,6 +83,13 @@ Route::middleware(['auth.admin'])->prefix('admin')->name('admin.')->group(
         Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
         Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
         Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+
+        // Admins
+        Route::get('/admins', [AdminController::class, 'index'])->name('admins');
+        Route::post('/admins', [AdminController::class, 'store'])->name('admins.store');
+        Route::delete('/admins/{id}', [AdminController::class, 'destroy'])->name('admins.destroy');
+        Route::delete('/admins/{id}', [AdminController::class, 'destroy'])->name('admins.destroy');
+        Route::put('/admins/{id}', [AdminController::class, 'update'])->name('admins.update');
 
         //Roles 
         Route::get('/roles', [RoleController::class, 'index'])->name('roles');

@@ -12,7 +12,6 @@ function index(props: Props) {
                 <title>Create Role</title>
             </Head>
             <AuthenticatedLayout>
-              
                 <Create {...props} />
             </AuthenticatedLayout>
         </>

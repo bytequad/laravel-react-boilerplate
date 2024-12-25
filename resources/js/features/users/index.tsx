@@ -1,9 +1,5 @@
-import { Header } from '@/components/core-layouts/header';
 import { Main } from '@/components/core-layouts/main';
 import { Button } from '@/components/ui/button';
-import { ProfileDropdown } from '@/components/ui/profile-dropdown';
-import { Search } from '@/components/ui/search';
-import { ThemeSwitch } from '@/components/ui/theme-switch';
 import useDialogState from '@/hooks/use-dialog-state';
 import { IconMailPlus, IconUserPlus } from '@tabler/icons-react';
 import { useState } from 'react';
