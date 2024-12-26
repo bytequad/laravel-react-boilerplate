@@ -1,3 +1,4 @@
+import { Role } from '@/features/roles/roles.type';
 import React from 'react';
 import { Admin } from '../data/schema';
 
@@ -8,6 +9,7 @@ interface AdminsContextType {
     setOpen: (str: AdminsDialogType | null) => void;
     currentRow: Admin | null;
     setCurrentRow: React.Dispatch<React.SetStateAction<Admin | null>>;
+    roles: Role[];
 }
 
 const AdminsContext = React.createContext<AdminsContextType | null>(null);

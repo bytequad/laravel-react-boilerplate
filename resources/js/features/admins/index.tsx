@@ -15,6 +15,7 @@ import { Admin } from './data/schema';
 
 export default function AdminsFeature({
     admins,
+    roles,
     search,
     sort_by,
     sort_direction,
@@ -28,7 +29,7 @@ export default function AdminsFeature({
 
     return (
         <AdminsContextProvider
-            value={{ open, setOpen, currentRow, setCurrentRow }}
+            value={{ open, setOpen, currentRow, setCurrentRow, roles }}
         >
             <Main>
                 <div className="mb-2 flex flex-wrap items-center justify-between space-y-2">

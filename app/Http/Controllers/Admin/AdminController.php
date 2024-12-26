@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AdminResource;
 use App\Models\Admin;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
@@ -30,17 +32,20 @@ class AdminController extends Controller
         ->orderBy($sortBy, $sortDirection)
         ->paginate(10);
 
-    // Explicitly hide the password field
-    $admins->getCollection()->transform(function ($admin) {
-        $admin->makeHidden('password');
-        return $admin;
-    });
-            Log::info($admins);
+        // Explicitly hide the password field
+        $admins->getCollection()->transform(function ($admin) {
+            $admin->makeHidden('password');
+            return $admin;
+        });
+
+        $roles = Role::all();
+     
         // Return paginated and filtered data to Inertia
         return inertia('Admin/Admins/index', [
             'admins' => $admins,
             'search' => $search,
             'sort_by' => $sortBy,
+            'roles' => $roles,
             'sort_direction' => $sortDirection,
         ]);
     }
@@ -58,11 +63,13 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-       // Validate the incoming request data
+      // Validate the incoming request data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|array', // Ensure roles are provided as an array
+            'role.*' => 'exists:roles,id', // Ensure each role ID exists in the roles table
         ]);
 
         // Create the new user
@@ -71,6 +78,9 @@ class AdminController extends Controller
             'email' => $validatedData['email'],
             'password' => bcrypt($validatedData['password']), // Encrypt the password
         ]);
+
+        // Attach roles to the user
+        $user->roles()->sync($validatedData['role']);
         return redirect()->back()->with('success', 'deleted');
     }
 
@@ -96,6 +106,7 @@ class AdminController extends Controller
     public function update(Request $request, string $id)
     {
         // Find the user by ID
+        
         $admin = Admin::findOrFail($id);
 
         // Validate the incoming request data
@@ -103,15 +114,21 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id, // Allow the same email if it's the user's own email
             'password' => 'nullable|string|min:8|confirmed', // Password is optional
+            'role' => 'nullable|array', // Ensure role is an array if provided
+            'role.*' => 'integer|exists:roles,id', // Each role ID must exist in the roles table
         ]);
 
-        // Update the user details
+        // Update the admin details
         $admin->update([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
-            'password' => $validatedData['password'] ? bcrypt($validatedData['password']) : $user->password, // Only update if a new password is provided
+            'password' => $validatedData['password'] ? bcrypt($validatedData['password']) : $admin->password, // Only update if a new password is provided
         ]);
 
+        // Update roles if provided
+        if (isset($validatedData['role'])) {
+            $admin->roles()->sync($validatedData['role']); // Sync roles in the pivot table
+        }
         // Redirect back with a success message
         return redirect()->back()->with('success', 'User updated successfully.');
     }

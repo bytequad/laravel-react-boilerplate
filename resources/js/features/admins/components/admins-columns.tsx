@@ -70,11 +70,15 @@ export const columns: ColumnDef<Admin>[] = [
         cell: ({ row }) => {
             const roles: [{ display_name: string; id: number }] =
                 row.getValue('roles');
-            return roles.map((role) => (
-                <Badge key={role.id} className="w-fit text-nowrap">
-                    {role.display_name}
-                </Badge>
-            ));
+            return (
+                <div className="flex space-x-2">
+                    {roles.map((role) => (
+                        <Badge key={role.id} className="w-fit text-nowrap">
+                            {role.display_name}
+                        </Badge>
+                    ))}
+                </div>
+            );
         },
     },
     // {

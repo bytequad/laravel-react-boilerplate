@@ -1,10 +1,13 @@
-type Admin = {
+import { Role } from "../roles/roles.type";
+
+export type Admin = {
     id: number;
     name: string;
     email: string;
     email_verified_at: string | null;
     created_at: string;
     updated_at: string;
+    roles: Role[];
 };
 
 type PaginationLink = {
