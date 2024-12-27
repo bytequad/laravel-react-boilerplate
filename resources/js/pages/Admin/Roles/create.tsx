@@ -8,9 +8,7 @@ type Props = {
 function index(props: Props) {
     return (
         <>
-            <Head>
-                <title>Create Role</title>
-            </Head>
+            <Head title="Create Roles" />
             <AuthenticatedLayout>
                 <Create {...props} />
             </AuthenticatedLayout>

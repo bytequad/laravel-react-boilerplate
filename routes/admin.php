@@ -42,6 +42,8 @@ Route::middleware('guest')->prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function () {
+
+
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 
@@ -73,6 +75,10 @@ Route::middleware(['auth.admin'])->prefix('admin')->name('admin.')->group(
         Route::get('/dashboard', function () {
             return Inertia::render('Admin/Dashboard');
         })->name('dashboard');
+
+        Route::get('/no-permission', function () {
+            return Inertia::render('NoPermission');
+        })->name('no_permission');
         Route::get('/dashboard/overview', function () {
             return Inertia::render('Overview');
         })->name('dashboard.overview');

@@ -25,9 +25,9 @@ class UserController extends Controller
             })
             ->orderBy($sortBy, $sortDirection)
             ->paginate(10);
-
+  
         // Return paginated and filtered data to Inertia
-        return inertia('Users/index', [
+        return inertia('Admin/Users/index', [
             'users' => $users,
             'search' => $search,
             'sort_by' => $sortBy,

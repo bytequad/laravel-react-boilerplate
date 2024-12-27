@@ -2,7 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use Illuminate\Container\Attributes\Log;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log as FacadesLog;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
 
@@ -33,15 +36,16 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'auth' => function () use ($request) { // Added $request in the closure
-                $user = $request->user();
-
+                // $user = $request->user();
+                $user = Auth::guard('admin')->user();
+                FacadesLog::info($user);
                 return [
                     'user' => $user ? [
                         'id' => $user->id,
                         'name' => $user->name,
                         'email' => $user->email,
-                        'roles' => $user->getRoleNames(), // ['admin', 'editor']
-                        'permissions' => $user->getAllPermissions()->pluck('name'), // ['edit posts', 'delete posts']
+                        'roles' => $user->getRoleNames(), // Retrieve all roles associated with the admin
+                        'permissions' => $user->getAllPermissions()->pluck('name'),
                     ] : null,
                 ];
             },

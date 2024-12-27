@@ -148,7 +148,7 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
             });
         } else {
             post(route(WEB_ROUTES.users_store), {
-                onFinish: () => {
+                onSuccess: () => {
                     reset('password', 'name', 'email', 'password_confirmation');
                     toast({
                         title: 'User created!',
@@ -187,7 +187,7 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
                     >
                         <div className="grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0">
                             <InputLabel
-                                value="First Name"
+                                value="Full Name"
                                 className="col-span-2 text-right"
                             />
                             {/* <Slot id={'formItemId'} className='col-span-4'> */}

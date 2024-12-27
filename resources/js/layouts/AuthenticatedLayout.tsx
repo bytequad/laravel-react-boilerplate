@@ -17,8 +17,6 @@ export default function Authenticated({
 }: PropsWithChildren<{ header?: ReactNode }>) {
     const user = usePage().props.auth.user;
 
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
     const defaultOpen = Cookies.get('sidebar:state') !== 'false';
     return (
         <SearchProvider>

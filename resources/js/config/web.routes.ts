@@ -7,7 +7,7 @@ export const WEB_ROUTES = {
     password_email: 'admin.password.email',
     password_store: 'admin.password.store',
     verification_send: 'admin.verification.send',
-
+    no_permiossion: 'admin.no_permission',
     // Auth Routes
     dashboard: 'admin.dashboard',
     users: 'admin.users',
