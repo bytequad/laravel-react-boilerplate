@@ -1,6 +1,7 @@
 import { Main } from '@/components/core-layouts/main';
 import { Button } from '@/components/ui/button';
 import useDialogState from '@/hooks/use-dialog-state';
+import usePermission from '@/hooks/use-permission';
 import { IconMailPlus, IconUserShield } from '@tabler/icons-react';
 import { useState } from 'react';
 import { AdminsActionDialog } from './components/admins-action-dialog';
@@ -22,6 +23,7 @@ export default function AdminsFeature({
 }) {
     const [currentRow, setCurrentRow] = useState<Admin | null>(null);
     const [open, setOpen] = useDialogState<AdminsDialogType>(null);
+    const hasCreatePermission = usePermission('create_admins');
     const atr = { search, sort_by, sort_direction };
     // Parse admin list
     // const adminList = adminListSchema.parse(admins);
@@ -49,12 +51,15 @@ export default function AdminsFeature({
                         >
                             <span>Invite Admin</span> <IconMailPlus size={18} />
                         </Button>
-                        <Button
-                            className="space-x-1"
-                            onClick={() => setOpen('add')}
-                        >
-                            <span>Add Admin</span> <IconUserShield size={18} />
-                        </Button>
+                        {hasCreatePermission && (
+                            <Button
+                                className="space-x-1"
+                                onClick={() => setOpen('add')}
+                            >
+                                <span>Add Admin</span>{' '}
+                                <IconUserShield size={18} />
+                            </Button>
+                        )}
                     </div>
                 </div>
                 <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">

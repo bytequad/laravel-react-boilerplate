@@ -1,5 +1,6 @@
 import RolesFeatureFeature from '@/features/roles';
 import { RolesResponse } from '@/features/roles/roles.type';
+import withPermission from '@/hoc/with-permission';
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 type Props = {
@@ -14,4 +15,4 @@ function index(props: Props) {
     );
 }
 
-export default index;
+export default withPermission(index, 'read_roles');

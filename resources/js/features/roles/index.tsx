@@ -2,6 +2,7 @@ import { Main } from '@/components/core-layouts/main';
 import { Button } from '@/components/ui/button';
 import { WEB_ROUTES } from '@/config/web.routes';
 import useDialogState from '@/hooks/use-dialog-state';
+import usePermission from '@/hooks/use-permission';
 import { Link } from '@inertiajs/react';
 import { IconUserShield } from '@tabler/icons-react';
 import { useState } from 'react';
@@ -21,6 +22,7 @@ export default function RolesFeature({
 }) {
     const [currentRow, setCurrentRow] = useState<User | null>(null);
     const [open, setOpen] = useDialogState<UsersDialogType>(null);
+    const hasCreatePermission = usePermission('create_roles');
     const atr = { search, sort_by, sort_direction };
     // Parse user list
     // const userList = userListSchema.parse(users);
@@ -41,12 +43,14 @@ export default function RolesFeature({
                         </p>
                     </div>
                     <div className="flex gap-2">
-                        <Button asChild className="space-x-1">
-                            <Link href={route(WEB_ROUTES.roles_create)}>
-                                <span>Add Role</span>{' '}
-                                <IconUserShield size={18} />
-                            </Link>
-                        </Button>
+                        {hasCreatePermission && (
+                            <Button asChild className="space-x-1">
+                                <Link href={route(WEB_ROUTES.roles_create)}>
+                                    <span>Add Role</span>{' '}
+                                    <IconUserShield size={18} />
+                                </Link>
+                            </Button>
+                        )}
                     </div>
                 </div>
                 <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">

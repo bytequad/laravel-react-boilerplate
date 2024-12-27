@@ -19,6 +19,20 @@ import { useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { usePermissions } from '../context/permissions-context';
 
+function sortPermissions(permissions) {
+    // Define the desired order of permission actions
+    const order = ['read', 'create', 'update', 'delete'];
+
+    // Sort the permissions array based on the order of action prefixes
+    return permissions.sort((a, b) => {
+        const aPrefix = a.name.split('_')[0]; // Extract the action (read, create, etc.)
+        const bPrefix = b.name.split('_')[0]; // Extract the action (read, create, etc.)
+
+        // Compare the order index of each prefix
+        return order.indexOf(aPrefix) - order.indexOf(bPrefix);
+    });
+}
+
 function CreateRoleForm({ initialData }: { initialData?: any }) {
     const permissions = usePermissions();
     const isEdit = !!initialData;
@@ -166,7 +180,6 @@ function CreateRoleForm({ initialData }: { initialData?: any }) {
             (data.permissions[moduleName] || []).includes(permission.id),
         ),
     );
-
     return (
         <Card className="p-6">
             <form onSubmit={submit}>
@@ -300,30 +313,30 @@ function CreateRoleForm({ initialData }: { initialData?: any }) {
                                                 }
                                             />
                                         </TableCell>
-                                        {permissions[moduleName].map(
-                                            (permission) => (
-                                                <TableCell
-                                                    className="text-center"
-                                                    key={permission.id}
-                                                >
-                                                    <Checkbox
-                                                        checked={
-                                                            data.permissions[
-                                                                moduleName
-                                                            ]?.includes(
-                                                                permission.id,
-                                                            ) || false
-                                                        }
-                                                        onCheckedChange={() =>
-                                                            handlePermissionChange(
-                                                                moduleName,
-                                                                permission.id,
-                                                            )
-                                                        }
-                                                    />
-                                                </TableCell>
-                                            ),
-                                        )}
+                                        {sortPermissions(
+                                            permissions[moduleName],
+                                        ).map((permission) => (
+                                            <TableCell
+                                                className="text-center"
+                                                key={permission.id}
+                                            >
+                                                <Checkbox
+                                                    checked={
+                                                        data.permissions[
+                                                            moduleName
+                                                        ]?.includes(
+                                                            permission.id,
+                                                        ) || false
+                                                    }
+                                                    onCheckedChange={() =>
+                                                        handlePermissionChange(
+                                                            moduleName,
+                                                            permission.id,
+                                                        )
+                                                    }
+                                                />
+                                            </TableCell>
+                                        ))}
                                     </TableRow>
                                 ))}
                             </TableBody>
