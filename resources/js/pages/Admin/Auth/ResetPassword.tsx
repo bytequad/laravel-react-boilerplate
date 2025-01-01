@@ -4,7 +4,7 @@ import PrimaryButton from '@/components/PrimaryButton';
 import TextInput from '@/components/TextInput';
 import { Card } from '@/components/ui/card';
 import { PasswordInput } from '@/components/ui/password-input';
-import { WEB_ROUTES } from '@/config/web.routes';
+import { PAGE_ROUTES } from '@/config/page.routes';
 import GuestLayout from '@/layouts/GuestLayout';
 import { cn } from '@/lib/utils';
 import { Head, Link, useForm } from '@inertiajs/react';
@@ -27,7 +27,7 @@ export default function ResetPassword({
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        post(route(WEB_ROUTES.password_store), {
+        post(route(PAGE_ROUTES.password_store), {
             onFinish: () => reset('password', 'password_confirmation'),
         });
     };
@@ -116,7 +116,7 @@ export default function ResetPassword({
                             </div>
                             <div className="flex items-center justify-end">
                                 <Link
-                                    href={route(WEB_ROUTES.login)}
+                                    href={route(PAGE_ROUTES.login)}
                                     className="text-sm font-medium text-muted-foreground hover:opacity-75"
                                 >
                                     Back To Login

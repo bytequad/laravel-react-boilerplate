@@ -16,7 +16,8 @@ class UserController extends Controller
         $search = $request->input('search', '');  // Default is empty string
         $sortBy = $request->input('sort_by', 'name');  // Default sort by 'name'
         $sortDirection = $request->input('sort_direction', 'asc');  // Default sort direction is 'asc'
-
+        $per_page = $request->input('per_page', 10); 
+        
         // Build the query for filtering and sorting
         $users = User::query()
             ->when($search, function ($query, $search) {
@@ -24,7 +25,7 @@ class UserController extends Controller
                     ->orWhere('email', 'like', "%$search%");
             })
             ->orderBy($sortBy, $sortDirection)
-            ->paginate(10);
+            ->paginate($per_page);
   
         // Return paginated and filtered data to Inertia
         return inertia('Admin/Users/index', [

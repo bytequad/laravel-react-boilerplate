@@ -1,5 +1,5 @@
 import DataTable from '@/components/ui/data-table';
-import { WEB_ROUTES } from '@/config/web.routes';
+import { PAGE_ROUTES } from '@/config/page.routes';
 import { router, usePage } from '@inertiajs/react';
 import {
     ColumnDef,
@@ -81,7 +81,7 @@ export function RolesTable({
             const sortingData = sortingArr[0];
 
             router.get(
-                route(WEB_ROUTES.roles, {
+                route(PAGE_ROUTES.roles, {
                     ...query,
                     sort_by: sortingData.id,
                     sort_direction: sortingData.desc ? 'desc' : 'asc',

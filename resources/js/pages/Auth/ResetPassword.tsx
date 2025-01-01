@@ -4,6 +4,7 @@ import PrimaryButton from '@/components/PrimaryButton';
 import TextInput from '@/components/TextInput';
 import { Card } from '@/components/ui/card';
 import { PasswordInput } from '@/components/ui/password-input';
+import { WEB_BE_ROUTES } from '@/config/web.be.routes';
 import GuestLayout from '@/layouts/GuestLayout';
 import { cn } from '@/lib/utils';
 import { Head, Link, useForm } from '@inertiajs/react';
@@ -26,7 +27,7 @@ export default function ResetPassword({
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        post(route('password.store'), {
+        post(route(WEB_BE_ROUTES.password_store), {
             onFinish: () => reset('password', 'password_confirmation'),
         });
     };

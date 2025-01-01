@@ -1,10 +1,11 @@
 import DataTable from '@/components/ui/data-table';
+import { PAGE_ROUTES } from '@/config/page.routes';
+import { debounce } from '@/utils';
 import { router, usePage } from '@inertiajs/react';
 import {
     ColumnDef,
     ColumnFiltersState,
     RowData,
-    SortingState,
     VisibilityState,
     getCoreRowModel,
     getFacetedRowModel,
@@ -43,28 +44,34 @@ export function UsersTable({
     columns,
     data,
     links,
-    search,
     sort_by,
+    per_page,
     sort_direction,
 }: DataTableProps) {
     const [rowSelection, setRowSelection] = useState({});
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
         {},
     );
-    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
     const [sorting, setSorting] = useState<SortingState>(() =>
         sort_by ? [{ id: sort_by, desc: sort_direction === 'desc' }] : [],
     );
+
     const query = (usePage().props.ziggy as Record<any, any>).query;
+
+    const [pagination, setPagination] = useState({
+        pageSize: per_page,
+        pageIndex: 0,
+    });
 
     const table = useReactTable({
         data,
         columns,
         state: {
             sorting,
+            pagination,
             columnVisibility,
             rowSelection,
-            columnFilters,
             links,
         },
         manualPagination: true,
@@ -80,14 +87,28 @@ export function UsersTable({
             const sortingData = sortingArr[0];
 
             router.get(
-                route('users', {
+                route(PAGE_ROUTES.users, {
                     ...query,
                     sort_by: sortingData.id,
                     sort_direction: sortingData.desc ? 'desc' : 'asc',
                 }),
             );
         },
-        onColumnFiltersChange: setColumnFilters,
+        onPaginationChange: (newPagination) => {
+            const paginationArr =
+                newPagination instanceof Function
+                    ? newPagination(pagination)
+                    : newPagination;
+            setPagination(paginationArr);
+
+            router.get(
+                route(PAGE_ROUTES.users, {
+                    ...query,
+                    page: undefined,
+                    per_page: paginationArr.pageSize,
+                }),
+            );
+        },
         onColumnVisibilityChange: setColumnVisibility,
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),

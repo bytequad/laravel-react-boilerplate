@@ -1,6 +1,6 @@
 import { Main } from '@/components/core-layouts/main';
 import { Button } from '@/components/ui/button';
-import { WEB_ROUTES } from '@/config/web.routes';
+import { PAGE_ROUTES } from '@/config/page.routes';
 import useDialogState from '@/hooks/use-dialog-state';
 import usePermission from '@/hooks/use-permission';
 import { Link } from '@inertiajs/react';
@@ -45,7 +45,7 @@ export default function RolesFeature({
                     <div className="flex gap-2">
                         {hasCreatePermission && (
                             <Button asChild className="space-x-1">
-                                <Link href={route(WEB_ROUTES.roles_create)}>
+                                <Link href={route(PAGE_ROUTES.roles_create)}>
                                     <span>Add Role</span>{' '}
                                     <IconUserShield size={18} />
                                 </Link>

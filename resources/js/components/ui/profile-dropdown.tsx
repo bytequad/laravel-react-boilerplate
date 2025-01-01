@@ -10,10 +10,14 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { WEB_ROUTES } from '@/config/web.routes';
-import { Link } from '@inertiajs/react';
+import { PAGE_ROUTES } from '@/config/page.routes';
+import { PageProps } from '@/types';
+import { getTwoInitials } from '@/utils';
+import { Link, usePage } from '@inertiajs/react';
 
 export function ProfileDropdown() {
+    const { auth } = usePage<PageProps>().props;
+    const { user } = auth;
     return (
         <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
@@ -23,7 +27,9 @@ export function ProfileDropdown() {
                 >
                     <Avatar className="h-8 w-8">
                         <AvatarImage src="/avatars/01.png" alt="@shadcn" />
-                        <AvatarFallback>SN</AvatarFallback>
+                        <AvatarFallback>
+                            {getTwoInitials(user.name)}
+                        </AvatarFallback>
                     </Avatar>
                 </Button>
             </DropdownMenuTrigger>
@@ -31,18 +37,20 @@ export function ProfileDropdown() {
                 <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
                         <p className="text-sm font-medium leading-none">
-                            satnaing
+                            {user.name}
                         </p>
                         <p className="text-xs leading-none text-muted-foreground">
-                            satnaingdev@gmail.com
+                            {user.email}
                         </p>
                     </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                        Profile
-                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                    <DropdownMenuItem asChild>
+                        <Link href={route(PAGE_ROUTES.profile)}>
+                            Profile
+                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                        </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                         Billing
@@ -55,7 +63,7 @@ export function ProfileDropdown() {
                     <DropdownMenuItem>New Team</DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <Link href={route(WEB_ROUTES.logout)} method="post">
+                <Link href={route(PAGE_ROUTES.logout)} method="post">
                     <DropdownMenuItem>
                         Log out
                         <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>

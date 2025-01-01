@@ -4,6 +4,7 @@ import PrimaryButton from '@/components/PrimaryButton';
 import TextInput from '@/components/TextInput';
 import { Card } from '@/components/ui/card';
 import { PasswordInput } from '@/components/ui/password-input';
+import { WEB_BE_ROUTES } from '@/config/web.be.routes';
 import GuestLayout from '@/layouts/GuestLayout';
 import { cn } from '@/lib/utils';
 import { Head, Link, useForm } from '@inertiajs/react';
@@ -18,7 +19,7 @@ export default function Login({ status }: { status?: string }) {
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        post(route('login'), {
+        post(route(WEB_BE_ROUTES.login), {
             onFinish: () => reset('password'),
         });
     };

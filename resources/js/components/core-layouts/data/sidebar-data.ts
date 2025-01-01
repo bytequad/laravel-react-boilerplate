@@ -1,4 +1,4 @@
-import { WEB_ROUTES } from '@/config/web.routes';
+import { PAGE_ROUTES } from '@/config/page.routes';
 import {
     IconLayoutDashboard,
     IconShield,
@@ -37,7 +37,7 @@ export const sidebarData: SidebarData = {
             items: [
                 {
                     title: 'Dashboard',
-                    url: WEB_ROUTES.dashboard,
+                    url: PAGE_ROUTES.dashboard,
                     icon: IconLayoutDashboard,
                 },
                 // {
@@ -58,17 +58,17 @@ export const sidebarData: SidebarData = {
                 // },
                 {
                     title: 'Users',
-                    url: WEB_ROUTES.users,
+                    url: PAGE_ROUTES.users,
                     icon: IconUsers,
                 },
                 {
                     title: 'Roles',
-                    url: WEB_ROUTES.roles,
+                    url: PAGE_ROUTES.roles,
                     icon: IconShield,
                 },
                 {
                     title: 'Admins',
-                    url: WEB_ROUTES.admins,
+                    url: PAGE_ROUTES.admins,
                     icon: IconUserShield,
                 },
             ],

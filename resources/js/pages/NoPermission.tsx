@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { WEB_ROUTES } from '@/config/web.routes';
+import { PAGE_ROUTES } from '@/config/page.routes';
 import { Head, Link } from '@inertiajs/react';
 import { ArrowLeft, Shield } from 'lucide-react';
 
@@ -20,7 +20,7 @@ export default function NoPermissionPage() {
                     </p>
                     <Button asChild>
                         <Link
-                            href={route(WEB_ROUTES.dashboard)}
+                            href={route(PAGE_ROUTES.dashboard)}
                             className="inline-flex items-center"
                         >
                             <ArrowLeft className="mr-2 h-4 w-4" />

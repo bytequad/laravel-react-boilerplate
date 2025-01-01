@@ -4,6 +4,7 @@ import InputLabel from '@/components/InputLabel';
 import Modal from '@/components/Modal';
 import SecondaryButton from '@/components/SecondaryButton';
 import TextInput from '@/components/TextInput';
+import { WEB_BE_ROUTES } from '@/config/web.be.routes';
 import { useForm } from '@inertiajs/react';
 import { FormEventHandler, useRef, useState } from 'react';
 
@@ -34,7 +35,7 @@ export default function DeleteUserForm({
     const deleteUser: FormEventHandler = (e) => {
         e.preventDefault();
 
-        destroy(route('profile.destroy'), {
+        destroy(route(WEB_BE_ROUTES.profile_destroy), {
             preserveScroll: true,
             onSuccess: () => closeModal(),
             onError: () => passwordInput.current?.focus(),

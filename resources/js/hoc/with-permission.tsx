@@ -1,4 +1,4 @@
-import { WEB_ROUTES } from '@/config/web.routes';
+import { PAGE_ROUTES } from '@/config/page.routes';
 import { router, usePage } from '@inertiajs/react';
 import { ComponentType } from 'react';
 
@@ -20,7 +20,7 @@ function withPermission(
         const { auth } = usePage<PageProps>().props;
 
         if (!auth.user?.permissions.includes(permission)) {
-            router.visit(route(WEB_ROUTES.no_permiossion)); // Redirect to the no-permission page
+            router.visit(route(PAGE_ROUTES.no_permiossion)); // Redirect to the no-permission page
             return null;
         }
 

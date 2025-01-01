@@ -1,7 +1,7 @@
 'use client';
 
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
-import { WEB_ROUTES } from '@/config/web.routes';
+import { WEB_BE_ROUTES } from '@/config/web.be.routes';
 import { toast } from '@/hooks/use-toast';
 import { router } from '@inertiajs/react';
 import { IconAlertTriangle } from '@tabler/icons-react';
@@ -15,7 +15,7 @@ interface Props {
 
 export function UsersDeleteDialog({ open, onOpenChange, currentRow }: Props) {
     const handleDelete = () => {
-        router.visit(route(WEB_ROUTES.users_destroy, currentRow.id), {
+        router.visit(route(WEB_BE_ROUTES.users_destroy, currentRow.id), {
             method: 'delete',
             onFinish() {
                 toast({

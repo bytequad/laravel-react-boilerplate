@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { WEB_ROUTES } from '@/config/web.routes';
+import { PAGE_ROUTES } from '@/config/page.routes';
 import usePermission from '@/hooks/use-permission';
 import { router } from '@inertiajs/react';
 import { IconEdit, IconTrash } from '@tabler/icons-react';
@@ -24,7 +24,7 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
                     onClick={() => {
                         setCurrentRow(row.original);
                         router.get(
-                            route(WEB_ROUTES.roles_edit, row.original.id),
+                            route(PAGE_ROUTES.roles_edit, row.original.id),
                         );
                     }}
                 >

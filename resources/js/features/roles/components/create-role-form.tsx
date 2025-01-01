@@ -14,6 +14,7 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { Textarea } from '@/components/ui/textarea';
+import { WEB_BE_ROUTES } from '@/config/web.be.routes';
 import { toast } from '@/hooks/use-toast';
 import { useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
@@ -80,7 +81,7 @@ function CreateRoleForm({ initialData }: { initialData?: any }) {
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
         if (isEdit) {
-            put(route('admin.roles.update', initialData.id), {
+            put(route(WEB_BE_ROUTES.roles_update, initialData.id), {
                 onSuccess(res) {
                     toast({
                         title: 'Role has been updated!',
@@ -88,7 +89,7 @@ function CreateRoleForm({ initialData }: { initialData?: any }) {
                 },
             });
         } else {
-            post(route('admin.roles.store'), {
+            post(route(WEB_BE_ROUTES.roles_store), {
                 onSuccess(res) {
                     toast({
                         title: 'Role has been created!',

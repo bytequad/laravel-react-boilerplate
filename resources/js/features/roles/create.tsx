@@ -1,6 +1,6 @@
 import { Main } from '@/components/core-layouts/main';
 import { Button } from '@/components/ui/button';
-import { WEB_ROUTES } from '@/config/web.routes';
+import { PAGE_ROUTES } from '@/config/page.routes';
 import { Link } from '@inertiajs/react';
 import { IconArrowNarrowLeft } from '@tabler/icons-react';
 import CreateRoleForm from './components/create-role-form';
@@ -26,7 +26,7 @@ function Create({ permissions }: { permissions: PermissionsGrouped }) {
                             className="space-x-1"
                             variant={'outline'}
                         >
-                            <Link href={route(WEB_ROUTES.roles)}>
+                            <Link href={route(PAGE_ROUTES.roles)}>
                                 <span>Back</span>{' '}
                                 <IconArrowNarrowLeft size={18} />
                             </Link>

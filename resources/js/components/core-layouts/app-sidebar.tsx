@@ -8,9 +8,11 @@ import {
     SidebarHeader,
     SidebarRail,
 } from '@/components/ui/sidebar';
+import { usePage } from '@inertiajs/react';
 import { sidebarData } from './data/sidebar-data';
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+    const user = usePage().props.auth.user;
     return (
         <Sidebar collapsible="icon" variant="floating" {...props}>
             <SidebarHeader>
@@ -22,7 +24,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 ))}
             </SidebarContent>
             <SidebarFooter>
-                <NavUser user={sidebarData.user} />
+                <NavUser user={user} />
             </SidebarFooter>
             <SidebarRail />
         </Sidebar>

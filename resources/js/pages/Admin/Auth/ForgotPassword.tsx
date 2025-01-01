@@ -6,7 +6,7 @@ import { Head, Link, useForm } from '@inertiajs/react';
 
 import InputLabel from '@/components/InputLabel';
 import PrimaryButton from '@/components/PrimaryButton';
-import { WEB_ROUTES } from '@/config/web.routes';
+import { PAGE_ROUTES } from '@/config/page.routes';
 import { cn } from '@/lib/utils';
 import { FormEventHandler } from 'react';
 
@@ -18,7 +18,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        post(route(WEB_ROUTES.password_email));
+        post(route(PAGE_ROUTES.password_email));
     };
 
     return (
@@ -75,7 +75,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
                 <p className="mt-4 px-8 text-center text-sm text-muted-foreground">
                     Don't have an account?{' '}
                     <Link
-                        href={route(WEB_ROUTES.register)}
+                        href={route(PAGE_ROUTES.register)}
                         className="underline underline-offset-4 hover:text-primary"
                     >
                         Sign up

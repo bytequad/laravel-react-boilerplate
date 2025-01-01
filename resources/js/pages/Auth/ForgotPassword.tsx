@@ -8,6 +8,7 @@ import InputLabel from '@/components/InputLabel';
 import PrimaryButton from '@/components/PrimaryButton';
 import { cn } from '@/lib/utils';
 import { FormEventHandler } from 'react';
+import { WEB_BE_ROUTES } from '@/config/web.be.routes';
 
 export default function ForgotPassword({ status }: { status?: string }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -17,7 +18,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        post(route('password.email'));
+        post(route(WEB_BE_ROUTES.password_email));
     };
 
     return (

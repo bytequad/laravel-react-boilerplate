@@ -8,6 +8,7 @@ type Props = {
 };
 
 function Users(props: Props) {
+    console.log("🚀 ~ Users ~ Props:", props)
     return (
         <AuthenticatedLayout>
             <Head title="Users" />

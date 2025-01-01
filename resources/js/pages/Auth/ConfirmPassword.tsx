@@ -3,6 +3,7 @@ import InputLabel from '@/components/InputLabel';
 import PrimaryButton from '@/components/PrimaryButton';
 import { Card } from '@/components/ui/card';
 import { PasswordInput } from '@/components/ui/password-input';
+import { WEB_BE_ROUTES } from '@/config/web.be.routes';
 import GuestLayout from '@/layouts/GuestLayout';
 import { cn } from '@/lib/utils';
 import { Head, useForm } from '@inertiajs/react';
@@ -16,7 +17,7 @@ export default function ConfirmPassword() {
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        post(route('password.confirm'), {
+        post(route(WEB_BE_ROUTES.password_confirm), {
             onFinish: () => reset('password'),
         });
     };

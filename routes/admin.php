@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::middleware('guest')->prefix('admin')->name('admin.')->group(function () {
+Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
@@ -41,7 +41,7 @@ Route::middleware('guest')->prefix('admin')->name('admin.')->group(function () {
         ->name('password.store');
 });
 
-Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth.admin'])->prefix('admin')->name('admin.')->group(function () {
 
 
     Route::get('verify-email', EmailVerificationPromptController::class)
@@ -79,31 +79,30 @@ Route::middleware(['auth.admin'])->prefix('admin')->name('admin.')->group(
         Route::get('/no-permission', function () {
             return Inertia::render('NoPermission');
         })->name('no_permission');
+        
         Route::get('/dashboard/overview', function () {
             return Inertia::render('Overview');
         })->name('dashboard.overview');
 
         // Users
-        Route::get('/users', [UserController::class, 'index'])->name('users');
-        Route::post('/users', [UserController::class, 'store'])->name('users.store');
-        Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
-        Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
-        Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::get('/users', [UserController::class, 'index'])->name('users')->middleware('permission:read_users,admin');;
+        Route::post('/users', [UserController::class, 'store'])->name('users.store')->middleware('permission:create_users,admin');;
+        Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy')->middleware('permission:delete_users,admin');;
+        Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update')->middleware('permission:udpate_users,admin');;
 
         // Admins
-        Route::get('/admins', [AdminController::class, 'index'])->name('admins');
-        Route::post('/admins', [AdminController::class, 'store'])->name('admins.store');
-        Route::delete('/admins/{id}', [AdminController::class, 'destroy'])->name('admins.destroy');
-        Route::delete('/admins/{id}', [AdminController::class, 'destroy'])->name('admins.destroy');
-        Route::put('/admins/{id}', [AdminController::class, 'update'])->name('admins.update');
+        Route::get('/admins', [AdminController::class, 'index'])->name('admins')->middleware('permission:read_admins,admin');
+        Route::post('/admins', [AdminController::class, 'store'])->name('admins.store')->middleware('permission:create_admins,admin');
+        Route::delete('/admins/{id}', [AdminController::class, 'destroy'])->name('admins.destroy')->middleware('permission:delete_admins,admin');
+        Route::put('/admins/{id}', [AdminController::class, 'update'])->name('admins.update')->middleware('permission:udpate_admins,admin');
 
         //Roles 
-        Route::get('/roles', [RoleController::class, 'index'])->name('roles');
-        Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
-        Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
-        Route::get('/roles/edit/{id}', [RoleController::class, 'edit'])->name('roles.edit');
-        Route::put('/roles/{id}', [RoleController::class, 'update'])->name('roles.update');
-        Route::delete('/roles/{id}', [RoleController::class, 'destroy'])->name('roles.destroy');
+        Route::get('/roles', [RoleController::class, 'index'])->name('roles')->middleware('permission:read_roles,admin');
+        Route::post('/roles', [RoleController::class, 'store'])->name('roles.store')->middleware('permission:create_roles,admin');
+        Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create')->middleware('permission:create_roles,admin');
+        Route::get('/roles/edit/{id}', [RoleController::class, 'edit'])->name('roles.edit')->middleware('permission:update_roles,admin');
+        Route::put('/roles/{id}', [RoleController::class, 'update'])->name('roles.update')->middleware('permission:update_roles,admin');
+        Route::delete('/roles/{id}', [RoleController::class, 'destroy'])->name('roles.destroy')->middleware('permission:delete_roles,admin');
 
     }
 );

@@ -14,13 +14,14 @@ import InputLabel from '@/components/InputLabel';
 import TextInput from '@/components/TextInput';
 import { MultiSelect } from '@/components/ui/multiselect';
 import { PasswordInput } from '@/components/ui/password-input';
-import { WEB_ROUTES } from '@/config/web.routes';
+import { PAGE_ROUTES } from '@/config/page.routes';
 import { toast } from '@/hooks/use-toast';
 import { useForm } from '@inertiajs/react';
 import { FormEventHandler, useEffect } from 'react';
 import { z } from 'zod';
 import { Admin } from '../admins.type';
 import { useAdminsContext } from '../context/admins-context';
+import { WEB_BE_ROUTES } from '@/config/web.be.routes';
 
 const formSchema = z
     .object({
@@ -134,7 +135,7 @@ export function AdminsActionDialog({ currentRow, open, onOpenChange }: Props) {
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
         if (isEdit) {
-            put(route(WEB_ROUTES.admins_update, currentRow.id), {
+            put(route(WEB_BE_ROUTES.admins_update, currentRow.id), {
                 onFinish: () => {
                     toast({
                         title: 'Admin updated!',
@@ -160,7 +161,7 @@ export function AdminsActionDialog({ currentRow, open, onOpenChange }: Props) {
             //         handleValidationErrors(e.errors);
             //     }
             // }
-            post(route(WEB_ROUTES.admins_store), {
+            post(route(WEB_BE_ROUTES.admins_store), {
                 onSuccess: () => {
                     reset(
                         'password',

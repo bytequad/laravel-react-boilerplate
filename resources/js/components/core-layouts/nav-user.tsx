@@ -14,7 +14,9 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from '@/components/ui/sidebar';
-import { WEB_ROUTES } from '@/config/web.routes';
+import { PAGE_ROUTES } from '@/config/page.routes';
+import { User } from '@/types';
+import { getTwoInitials } from '@/utils';
 import { Link } from '@inertiajs/react';
 import {
     BadgeCheck,
@@ -25,15 +27,7 @@ import {
     Sparkles,
 } from 'lucide-react';
 
-export function NavUser({
-    user,
-}: {
-    user: {
-        name: string;
-        email: string;
-        avatar: string;
-    };
-}) {
+export function NavUser({ user }: { user: User }) {
     const { isMobile } = useSidebar();
 
     return (
@@ -51,7 +45,7 @@ export function NavUser({
                                     alt={user.name}
                                 />
                                 <AvatarFallback className="rounded-lg">
-                                    SN
+                                    {getTwoInitials(user.name)}
                                 </AvatarFallback>
                             </Avatar>
                             <div className="grid flex-1 text-left text-sm leading-tight">
@@ -79,7 +73,7 @@ export function NavUser({
                                         alt={user.name}
                                     />
                                     <AvatarFallback className="rounded-lg">
-                                        SN
+                                        {getTwoInitials(user.name)}
                                     </AvatarFallback>
                                 </Avatar>
                                 <div className="grid flex-1 text-left text-sm leading-tight">
@@ -115,7 +109,7 @@ export function NavUser({
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <Link href={route(WEB_ROUTES.logout)} method="post">
+                        <Link href={route(PAGE_ROUTES.logout)} method="post">
                             <DropdownMenuItem>
                                 <LogOut />
                                 Log out

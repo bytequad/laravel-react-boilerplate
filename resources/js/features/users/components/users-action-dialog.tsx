@@ -13,12 +13,13 @@ import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
 import TextInput from '@/components/TextInput';
 import { PasswordInput } from '@/components/ui/password-input';
-import { WEB_ROUTES } from '@/config/web.routes';
+import { PAGE_ROUTES } from '@/config/page.routes';
 import { toast } from '@/hooks/use-toast';
 import { useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { z } from 'zod';
 import { User } from '../data/schema';
+import { WEB_BE_ROUTES } from '@/config/web.be.routes';
 
 const formSchema = z
     .object({
@@ -132,7 +133,7 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
         if (isEdit) {
-            put(route(WEB_ROUTES.users_update, currentRow.id), {
+            put(route(WEB_BE_ROUTES.users_update, currentRow.id), {
                 onFinish: () => {
                     toast({
                         title: 'User updated!',
@@ -147,7 +148,7 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
                 },
             });
         } else {
-            post(route(WEB_ROUTES.users_store), {
+            post(route(WEB_BE_ROUTES.users_store), {
                 onSuccess: () => {
                     reset('password', 'name', 'email', 'password_confirmation');
                     toast({

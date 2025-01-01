@@ -15,17 +15,17 @@ import UsersContextProvider, {
 import { User } from './data/schema';
 
 export default function UsersFeature({
-    users,
     search,
     sort_by,
     sort_direction,
+    users
 }) {
     const [currentRow, setCurrentRow] = useState<User | null>(null);
     const [open, setOpen] = useDialogState<UsersDialogType>(null);
     const hasCreatePermission = usePermission('create_users');
-    const atr = { search, sort_by, sort_direction };
-    // Parse user list
-    // const userList = userListSchema.parse(users);
+    console.log("🚀 ~ users:", users)
+
+    const atr = { search, sort_by, sort_direction, per_page: users.per_page };
     const userList = users.data;
 
     return (

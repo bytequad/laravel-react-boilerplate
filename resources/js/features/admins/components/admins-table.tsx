@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { Admin } from '../data/schema';
 import { DataTablePagination } from './data-table-pagination';
 import { DataTableToolbar } from './data-table-toolbar';
+import { PAGE_ROUTES } from '@/config/page.routes';
 
 declare module '@tanstack/react-table' {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -80,7 +81,7 @@ export function AdminsTable({
             const sortingData = sortingArr[0];
 
             router.get(
-                route('admins', {
+                route(PAGE_ROUTES.admins, {
                     ...query,
                     sort_by: sortingData.id,
                     sort_direction: sortingData.desc ? 'desc' : 'asc',

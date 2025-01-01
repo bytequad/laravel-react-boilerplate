@@ -7,16 +7,12 @@ import SkipToMain from '@/components/ui/skip-to-main';
 import { ThemeSwitch } from '@/components/ui/theme-switch';
 import { SearchProvider } from '@/context/search-context';
 import { cn } from '@/lib/utils';
-import { usePage } from '@inertiajs/react';
 import Cookies from 'js-cookie';
-import { PropsWithChildren, ReactNode, useState } from 'react';
+import { PropsWithChildren, ReactNode } from 'react';
 
 export default function Authenticated({
-    header,
     children,
 }: PropsWithChildren<{ header?: ReactNode }>) {
-    const user = usePage().props.auth.user;
-
     const defaultOpen = Cookies.get('sidebar:state') !== 'false';
     return (
         <SearchProvider>

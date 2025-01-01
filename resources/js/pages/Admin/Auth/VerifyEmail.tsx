@@ -1,6 +1,6 @@
 import PrimaryButton from '@/components/PrimaryButton';
 import { Card } from '@/components/ui/card';
-import { WEB_ROUTES } from '@/config/web.routes';
+import { PAGE_ROUTES } from '@/config/page.routes';
 import GuestLayout from '@/layouts/GuestLayout';
 import { cn } from '@/lib/utils';
 import { Head, Link, useForm } from '@inertiajs/react';
@@ -12,7 +12,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        post(route(WEB_ROUTES.verification_send));
+        post(route(PAGE_ROUTES.verification_send));
     };
 
     return (
@@ -43,7 +43,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
                                 </PrimaryButton>
 
                                 <Link
-                                    href={route(WEB_ROUTES.logout)}
+                                    href={route(PAGE_ROUTES.logout)}
                                     method="post"
                                     as="button"
                                     className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
