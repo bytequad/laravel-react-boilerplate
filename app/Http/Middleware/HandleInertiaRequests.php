@@ -1,11 +1,8 @@
 <?php
 
 namespace App\Http\Middleware;
-
-use Illuminate\Container\Attributes\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log as FacadesLog;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
 
@@ -38,7 +35,6 @@ class HandleInertiaRequests extends Middleware
             'auth' => function () use ($request) { // Added $request in the closure
                 // $user = $request->user();
                 $user = Auth::guard('admin')->user();
-                FacadesLog::info($user);
                 return [
                     'user' => $user ? [
                         'id' => $user->id,
