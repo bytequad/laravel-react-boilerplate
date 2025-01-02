@@ -23,7 +23,6 @@ export default function UsersFeature({
     const [currentRow, setCurrentRow] = useState<User | null>(null);
     const [open, setOpen] = useDialogState<UsersDialogType>(null);
     const hasCreatePermission = usePermission('create_users');
-    console.log("🚀 ~ users:", users)
 
     const atr = { search, sort_by, sort_direction, per_page: users.per_page };
     const userList = users.data;
